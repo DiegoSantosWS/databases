@@ -1,4 +1,4 @@
-module github.com/DiegoSantosWS/databases/meilisearch
+module github.com/DiegoSantosWS/databases
 
 go 1.17
 
