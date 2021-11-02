@@ -1,4 +1,4 @@
-package meilidb
+package meilisearch
 
 import (
 	"os"
