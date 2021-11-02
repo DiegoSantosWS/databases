@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  dash:
+    image: shokme/meilisearch-dashboard:latest
+    ports:
+      - 8000:80
+  dbmeili:
+    image: getmeili/meilisearch:latest
+    command: ./meilisearch --master-key=soiuduoffdudoiusfiouoi545454 --no-analytics=true
+    ports:
+      - 7700:7700
