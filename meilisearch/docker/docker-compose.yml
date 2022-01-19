@@ -5,6 +5,7 @@ services:
     image: shokme/meilisearch-dashboard:latest
     ports:
       - 8000:80
+    network_mode: host
   dbmeili:
     image: getmeili/meilisearch:latest
     command: ./meilisearch --master-key=soiuduoffdudoiusfiouoi545454 --no-analytics=true
