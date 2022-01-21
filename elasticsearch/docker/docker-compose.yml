@@ -7,8 +7,13 @@ services:
       - bootstrap.memory_lock=true
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - discovery.type=single-node
-      - node.name=lonely-gopher
-      - cluster.name=es4gophers
+      - ELASTIC_USERNAME=admin
+      - ELASTIC_PASSWORD=diegodos
+      - xpack.security.enabled=true
+      - xpack.monitoring.enabled=true
+      # - xpack.security.http.ssl.enabled=true
+      - node.name=diegosantosws
+      - cluster.name=dsws
     ulimits:
       memlock:
         hard: -1
@@ -16,7 +21,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      - es4gophers
+      - dsws
     healthcheck:
       interval: 10s
       retries: 20
@@ -27,15 +32,21 @@ services:
     container_name: kibana
     depends_on:
       - elasticsearch
-          # condition: service_healthy
 
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      XPACK_MONITORING_ENABLED: "true"
+      XPACK_MONITORING_COLLECTION_ENABLED: "true"
+      XPACK_SECURITY_ENABLED: "true"
+      xpack.security.authc.api_key.enabled: true
+      ELASTICSEARCH_USERNAME: elastic
+      ELASTICSEARCH_PASSWORD: diegodos
+
     ports:
       - 5601:5601
     networks:
-      - es4gophers
+      - dsws
     healthcheck:
       interval: 10s
       retries: 20
@@ -43,5 +54,5 @@ services:
         http://localhost:5601/api/status
 
 networks:
-  es4gophers:
+  dsws:
     driver: bridge
