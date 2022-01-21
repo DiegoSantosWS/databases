@@ -7,3 +7,5 @@ A expressão abaixo busca em qualquer atributo
 A expressão abaixo busca em um atributo expecifico
 
 > GET catalogo/_search/?q=estado:SP
+
+
