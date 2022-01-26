@@ -89,3 +89,145 @@ PUT /produtos_autocomplete
     }
   }
 }
+
+POST /produtos_autocomplete/
+{
+  "nome": "Big Data rápido e fácil",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "larga escala", "computação"],
+  "fornecedor": "Casa do Código",
+  "preco": 29.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Guia rápido e fácil para big data",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "larga escala", "computação"],
+  "fornecedor": "Casa do Código",
+  "preco": 219.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Big Data: Técnicas e tecnologias para extração de valor dos dados",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "larga escala", "computação"],
+  "fornecedor": "Casa do Código",
+  "preco": 49.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Think Big: Guia para sua micro empresa",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "larga escala", "computação"],
+  "fornecedor": "Casa do Código",
+  "preco": 49.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "A história do futebol brasileiro",
+  "categoria": "Livros",
+  "subcategoria": "Esportes",
+  "tags": ["impresso", "digital", "esportes", "futebol"],
+  "fornecedor": "Casa do Código",
+  "preco": 59.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "A história do Brasil",
+  "categoria": "Livros",
+  "subcategoria": "Escolar",
+  "tags": ["impresso", "digital", "escola", "história"],
+  "fornecedor": "Casa do Código",
+  "preco": 34.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Contos dos melhores escritores do Brasil",
+  "categoria": "Livros",
+  "subcategoria": "Literatura",
+  "tags": ["impresso", "literatura", "nacional"],
+  "fornecedor": "Casa do Código",
+  "preco": 57.25
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Bola de futsal",
+  "categoria": "Esportes",
+  "subcategoria": "Futebol",
+  "tags": ["futebol", "amador", "quadra"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 29.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Camiseta Seleção Brasileira",
+  "categoria": "Roupas",
+  "subcategoria": "Esportes",
+  "tags": ["futebol", "amador", "seleção", "amarelinha"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 129.90
+}
+
+POST /produtos_autocomplete/
+{
+  "nome": "Chuteira de Futebol",
+  "categoria": "Calçados",
+  "subcategoria": "Esportes",
+  "tags": ["futebol", "amador", "campo", "amarelinha"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 129.90
+}
+
+// fazer passo a passo
+// 1- simular busca
+GET /produtos_autocomplete/_search
+{
+  "query" : {
+    "match" : {
+      "nome.autocomplete": "data bi"
+    }
+  }
+}
+
+// 2- highlight dos termos
+GET /produtos_autocomplete/_search
+{
+  "query" : {
+    "match" : {
+      "nome.autocomplete": "data bi"
+    }
+  },
+  "highlight" : {
+    "fields" : {
+        "nome.autocomplete" : {}
+    }
+  }
+}
+
+// 3- includir apenas o fornecedor no resultado, alem do highlight
+GET /produtos_autocomplete/_search
+{
+  "_source": ["fornecedor"],
+  "query" : {
+    "match" : {
+      "nome.autocomplete": "data bi"
+    }
+  },
+  "highlight" : {
+    "fields" : {
+        "nome.autocomplete" : {}
+    }
+  }
+}
