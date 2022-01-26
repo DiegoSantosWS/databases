@@ -1,0 +1,188 @@
+GET /_cat/health?v
+GET /_cat/indices?v
+
+// o famoso select * from
+GET /produtos/_search
+{
+  "query" : {
+    "match_all": {
+    }
+  }
+}
+
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "categoria": "calçados"
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "tags": "digital"
+    }
+  }
+}
+
+// equivalente ao exemplo tags:impresso AND nome:scala
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "must": [
+        {"match": {"tags": "impresso" }},
+        {"match": {"nome": "scala" }}
+      ]
+    }
+  }
+}
+
+// categoria = livro AND
+// (tags = imutabilidade OR tags = larga escala)
+// AND NOT(nome = scala)
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "must": {"match": {"categoria": "livro" }},
+      "should": [
+        {"match": {"tags": "imutabilidade" }},
+        {"match": {"tags": "larga escala" }}
+      ],
+      "must_not": {"match": {"nome": "scala"}}
+    }
+  }
+}
+
+
+GET /produtos/_search
+{
+  "query" : {
+    "term": {
+      "tags": "escala"
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "terms": {
+      "tags": ["digital", "quadra", "amador"]
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "range": {
+      "preco": {
+        "lte": 100.0
+      }
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "filter": {
+        "terms": {
+          "tags": ["digital", "quadra", "amador"]
+        }
+      }
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "must": {
+        "match": {"tags": "esportes"}},
+      "filter": {
+        "range": {"preco": {"lte": 100}}
+}}}}
+
+-- exemplo de query e filter
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "must": {
+        "match": {
+          "tags": "futebol"
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {"range": {"preco": {"lte": 100}}},
+            {"term": {"categoria.original": "Livros"}}
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": "big data futebol brasileiro"
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": "tecnologias tecnica futebol"
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": "imutavel futebol"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

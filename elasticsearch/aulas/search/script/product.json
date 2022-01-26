@@ -1,0 +1,59 @@
+//  POST /produtos/_doc
+{
+  "nome": "Scala: Como escalar sua produtividade",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "scala", "programação funcional", "computação", "imutabilidade"],
+  "fornecedor": "Casa do Código",
+  "preco": 69.90
+}
+
+// POST /produtos/_doc
+{
+  "nome": "Big Data: Técnicas e tecnologias para extração de valor dos dados",
+  "categoria": "Livros",
+  "subcategoria": "Tecnologia",
+  "tags": ["impresso", "digital", "larga escala", "computação"],
+  "fornecedor": "Casa do Código",
+  "preco": 49.90
+}
+
+// POST /produtos/_doc
+{
+  "nome": "A história do futebol brasileiro",
+  "categoria": "Livros",
+  "subcategoria": "Esportes",
+  "tags": ["impresso", "digital", "esportes", "futebol"],
+  "fornecedor": "Casa do Código",
+  "preco": 59.90
+}
+
+// POST /produtos/_doc
+{
+  "nome": "Bola de futsal",
+  "categoria": "Esportes",
+  "subcategoria": "Futebol",
+  "tags": ["futebol", "amador", "quadra"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 29.90
+}
+
+// POST /produtos/_doc
+{
+  "nome": "Camiseta Seleção Brasileira",
+  "categoria": "Roupas",
+  "subcategoria": "Esportes",
+  "tags": ["futebol", "amador", "seleção", "amarelinha"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 129.90
+}
+
+// POST /produtos/_doc
+{
+  "nome": "Chuteira de Futebol",
+  "categoria": "Calçados",
+  "subcategoria": "Esportes",
+  "tags": ["futebol", "amador", "campo", "amarelinha"],
+  "fornecedor": "Irmãos Silveira Esportes",
+  "preco": 129.90
+}
