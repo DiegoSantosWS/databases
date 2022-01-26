@@ -1,0 +1,91 @@
+PUT /produtos_autocomplete
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 0
+    },
+    "analysis" : {
+      "filter": {
+        "filtro_autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 2,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "autocomplete" : {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter" : [
+            "lowercase",
+            "filtro_autocomplete"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "v1": {
+      "_all": {
+        "type": "text",
+        "analyzer": "portuguese"
+      },
+      "properties": {
+        "nome": {
+          "fields": {
+            "original": {
+              "type": "keyword"
+            },
+            "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete"
+            }
+          },
+          "type": "text",
+          "analyzer": "portuguese"
+        },
+        "categoria": {
+          "fields": {
+            "original": {
+              "type": "keyword"
+            }
+          },
+          "type": "text",
+          "analyzer": "portuguese"
+        },
+        "subcategoria": {
+          "fields": {
+            "original": {
+              "type": "keyword"
+            }
+          },
+          "type": "text",
+          "analyzer": "portuguese"
+        },
+        "tags": {
+          "fields": {
+            "original": {
+              "type": "keyword"
+            }
+          },
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "portuguese"
+        },
+        "fornecedor": {
+          "fields": {
+            "original": {
+              "type": "keyword",
+              "index": "not_analyzed"
+            }
+          },
+          "type": "text"
+        },
+        "preco": {
+          "type": "float"
+        }
+      }
+    }
+  }
+}

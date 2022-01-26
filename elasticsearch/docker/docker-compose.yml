@@ -39,7 +39,7 @@ services:
       XPACK_MONITORING_ENABLED: "true"
       XPACK_MONITORING_COLLECTION_ENABLED: "true"
       XPACK_SECURITY_ENABLED: "true"
-      xpack.security.authc.api_key.enabled: true
+      xpack.security.authc.api_key.enabled: "true"
       ELASTICSEARCH_USERNAME: elastic
       ELASTICSEARCH_PASSWORD: diegodos
 

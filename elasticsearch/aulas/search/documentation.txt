@@ -162,22 +162,174 @@ GET /produtos/_search
   }
 }
 
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": "big data futebol brasileiro"
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "should": [
+        {"term": {"nome": "big"}},
+        {"term": {"nome": "brasileir"}},
+        {"term": {"nome": "futebol"}},
+        {"term": {"nome": "data"}}
+      ]
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": {
+        "query" : "big data futebol brasileiro",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": {
+        "query" : "brasileiro futebol",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": {
+        "query" : "brasileiro futebol",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "match": {
+      "nome": {
+        "query" : "big data futebol brasileiro",
+        "minimum_should_match": "50%"
+      }
+    }
+  }
+}
 
 
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": {
+              "query" : "big data",
+              "operator": "and"
+            }
+          }
+        },
+        {
+          "match": {
+            "nome": {
+              "query" : "brasileiro futebol"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": {
+              "query" : "big data",
+              "operator": "and",
+              "boost": "2"
+            }
+          }
+        },
+        {
+          "match": {
+            "nome": {
+              "query" : "brasileiro futebol"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /produtos/_search
+{
+  "query" : {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": {
+              "query" : "big data",
+              "operator": "and",
+              "boost": "0.2"
+            }
+          }
+        },
+        {
+          "match": {
+            "nome": {
+              "query" : "brasileiro futebol"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
 
 
+GET /produtos/_search
+{
+  "query" : {
+    "query_string": {
+        "query" : "tags:ama*"
+    }
+  }
+}
 
 
-
-
-
-
-
-
-
-
-
-
+GET /produtos/_search
+{
+  "query" : {
+    "prefix": {
+      "tags": "ama"
+    }
+  }
+}
 
 
 

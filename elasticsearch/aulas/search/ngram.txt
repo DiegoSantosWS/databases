@@ -1,0 +1,78 @@
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "ngram"
+  },
+  "text": "Big Data"
+}
+
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "ngram",
+    "max_gram": 10
+  },
+  "text": "Big Data"
+}
+
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "ngram",
+    "min_gram": 2,
+    "max_gram": 10
+  },
+  "text": "Big Data"
+}
+
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "edge_ngram"
+  },
+  "text": "Big Data"
+}
+
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "edge_ngram",
+    "max_gram": 10
+  },
+  "text": "Big Data"
+}
+
+GET /_analyze
+{
+  "tokenizer": {
+    "type": "edge_ngram",
+    "min_gram": 2,
+    "max_gram": 10
+  },
+  "text": "Big Data"
+}
+
+PUT /indice_ngramas
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "analysis" : {
+      "filter": {
+        "filtro_autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 2,
+          "max_gram": 20
+        }
+      },
+      "analyzer": {
+        "autocomplete" : {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter" : [
+            "lowercase",
+            "filtro_autocomplete"
+          ]
+}}}}}
